@@ -124,16 +124,16 @@ public class QueryFrame extends JFrame {
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel sqlLabel = new JLabel("");
-		sqlLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-		sqlLabel.setBounds(52, 436, 439, 243);
+		sqlLabel.setFont(new Font("Consolas", Font.BOLD, 18));
+		sqlLabel.setBounds(52, 436, 428, 243);
 		contentPane.add(sqlLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(548, 435, 403, 251);
+		scrollPane.setBounds(492, 435, 459, 251);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setFont(new Font("Tahoma", Font.BOLD, 16));
+		table.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		scrollPane.setViewportView(table);
 		
 		JButton btnSubmitQuery = new JButton("SUBMIT QUERY");
@@ -173,13 +173,7 @@ public class QueryFrame extends JFrame {
 					
 				}
 				else if(rdbtnNewRadioButton_2.isSelected()) {
-					query="SELECT DISTINCT P.POLICY_NO,NAME,AGENT_NAME\r\n" + 
-							"FROM POLICY P,\r\n" + 
-							"     AGENT A,\r\n" + 
-							"     CUSTOMER C\r\n" + 
-							"WHERE A.AGENT_ID=C.AGENT_ID AND\r\n" + 
-							"      P.POLICY_NO=C.POLICY_NO AND\r\n" + 
-							"      POLICY_TYPE='Home'";
+					query="SELECT DISTINCT P.POLICY_NO,NAME,AGENT_NAME FROM POLICY P, AGENT A, CUSTOMER C WHERE A.AGENT_ID=C.AGENT_ID AND P.POLICY_NO=C.POLICY_NO AND POLICY_TYPE='Home'";
 					sqlLabel.setText("<html>"+query+"</html>");
 				
 					try {
@@ -195,13 +189,7 @@ public class QueryFrame extends JFrame {
 					
 				}
 				else if(rdbtnNewRadioButton_3.isSelected()) {
-					query="SELECT P.POLICY_NO,POLICY_NAME,COUNT(*) AS NO_OF_CUSTOMER\r\n" + 
-							"FROM POLICY P,\r\n" + 
-							"     AGENT A,\r\n" + 
-							"     CUSTOMER C\r\n" + 
-							"WHERE C.POLICY_NO=P.POLICY_NO AND\r\n" + 
-							"      A.AGENT_ID=C.AGENT_ID       \r\n" + 
-							"GROUP BY P.POLICY_NO,POLICY_NAME";
+					query="SELECT P.POLICY_NO,POLICY_NAME,COUNT(*) AS NO_OF_CUSTOMER FROM POLICY P, AGENT A, CUSTOMER C WHERE C.POLICY_NO=P.POLICY_NO AND A.AGENT_ID=C.AGENT_ID GROUP BY P.POLICY_NO,POLICY_NAME";
 					sqlLabel.setText("<html>"+query+"</html>");
 				
 					try {
@@ -213,6 +201,22 @@ public class QueryFrame extends JFrame {
 					} catch (SQLException e3) {
 						// TODO Auto-generated catch block
 						e3.printStackTrace();
+					}
+					
+				}
+				else if(rdbtnNewRadioButton_4.isSelected()) {
+					query="select b.branch_id,a.agent_name,c.policy_no,c.name from branch b,agent a,customer c where (b.branch_id=a.branch_id and a.agent_id= c.agent_id) and (b.branch_id=1 and a.branch_id=1) and (a.agent_name='Alex' and c.policy_no=2001)";
+					sqlLabel.setText("<html>"+query+"</html>");
+				
+					try {
+						PreparedStatement pt = con.prepareStatement(query);
+						ResultSet rs = pt.executeQuery();
+						table.setModel(DbUtils.resultSetToTableModel(rs));
+						rs.close();
+						pt.close();
+					} catch (SQLException e4) {
+						// TODO Auto-generated catch block
+						e4.printStackTrace();
 					}
 					
 				}
