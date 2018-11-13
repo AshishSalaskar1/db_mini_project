@@ -5,8 +5,8 @@ import javax.swing.*;
 public class dbConnectionHelper {
 	
 	static Connection con=null;
-	public static Connection Connect() throws ClassNotFoundException {
-		
+	public static Connection Connect() throws
+		 ClassNotFoundException {
 		Class.forName("oracle.jdbc.driver.OracleDriver");  
 		try {
 			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","ashish","ashish98");

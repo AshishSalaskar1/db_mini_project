@@ -56,7 +56,7 @@ public class QueryFrame extends JFrame {
 		con = dbConnectionHelper.Connect();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100,1024, 768);
+		setBounds(100, 100,1290,798);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -65,71 +65,71 @@ public class QueryFrame extends JFrame {
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Query 1");
 		buttonGroup.add(rdbtnNewRadioButton);
 		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		rdbtnNewRadioButton.setBounds(69, 79, 112, 25);
+		rdbtnNewRadioButton.setBounds(105, 75, 112, 25);
 		contentPane.add(rdbtnNewRadioButton);
 		
 		JLabel lblQueries = new JLabel("QUERIES");
-		lblQueries.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblQueries.setFont(new Font("Georgia", Font.BOLD, 24));
 		lblQueries.setBounds(395, 0, 206, 58);
 		contentPane.add(lblQueries);
 		
 		JLabel lblNewLabel = new JLabel("Retrieve the name and his customer name and dob whose location is \"DELHI\"");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(188, 83, 728, 16);
+		lblNewLabel.setBounds(280, 79, 728, 16);
 		contentPane.add(lblNewLabel);
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Query 2");
 		buttonGroup.add(rdbtnNewRadioButton_1);
 		rdbtnNewRadioButton_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		rdbtnNewRadioButton_1.setBounds(69, 128, 106, 25);
+		rdbtnNewRadioButton_1.setBounds(105, 128, 106, 25);
 		contentPane.add(rdbtnNewRadioButton_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("<html>Retrieve the policies of all customers name and id who has \"HEALTH\" policies with maturity amount > 200000</html?");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(189, 101, 703, 84);
+		lblNewLabel_1.setBounds(281, 97, 908, 84);
 		contentPane.add(lblNewLabel_1);
 		
 		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Query 3");
 		buttonGroup.add(rdbtnNewRadioButton_2);
 		rdbtnNewRadioButton_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		rdbtnNewRadioButton_2.setBounds(69, 174, 112, 25);
+		rdbtnNewRadioButton_2.setBounds(105, 183, 112, 25);
 		contentPane.add(rdbtnNewRadioButton_2);
 		
 		JLabel lblNewLabel_2 = new JLabel("<html>\r\n Retrieve the Policy name,Policy no and name of the agent and Tensure Having Policy Type as 'HOME'.</html>");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(188, 174, 704, 50);
+		lblNewLabel_2.setBounds(280, 170, 909, 50);
 		contentPane.add(lblNewLabel_2);
 		
 		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("Query 4");
 		buttonGroup.add(rdbtnNewRadioButton_3);
 		rdbtnNewRadioButton_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		rdbtnNewRadioButton_3.setBounds(69, 238, 112, 25);
+		rdbtnNewRadioButton_3.setBounds(105, 234, 112, 25);
 		contentPane.add(rdbtnNewRadioButton_3);
 		
 		JLabel lblNewLabel_3 = new JLabel("<html>For a Table \"POLICY\" retrieve the name of the policy and policy_no and count the number of Customer present in each policy.</html>");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(188, 238, 747, 50);
+		lblNewLabel_3.setBounds(280, 234, 966, 50);
 		contentPane.add(lblNewLabel_3);
 		
 		JRadioButton rdbtnNewRadioButton_4 = new JRadioButton("Query 5");
 		buttonGroup.add(rdbtnNewRadioButton_4);
 		rdbtnNewRadioButton_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		rdbtnNewRadioButton_4.setBounds(70, 302, 112, 25);
+		rdbtnNewRadioButton_4.setBounds(105, 298, 112, 25);
 		contentPane.add(rdbtnNewRadioButton_4);
 		
 		JLabel lblNewLabel_4 = new JLabel("New label");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_4.setBounds(188, 306, 185, 16);
+		lblNewLabel_4.setBounds(280, 302, 185, 16);
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel sqlLabel = new JLabel("");
-		sqlLabel.setFont(new Font("Consolas", Font.BOLD, 18));
-		sqlLabel.setBounds(52, 436, 428, 243);
+		sqlLabel.setFont(new Font("Consolas", Font.BOLD, 20));
+		sqlLabel.setBounds(52, 436, 549, 302);
 		contentPane.add(sqlLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(492, 435, 459, 251);
+		scrollPane.setBounds(657, 431, 589, 307);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -206,7 +206,7 @@ public class QueryFrame extends JFrame {
 				}
 				else if(rdbtnNewRadioButton_4.isSelected()) {
 					query="select b.branch_id,a.agent_name,c.policy_no,c.name from branch b,agent a,customer c where (b.branch_id=a.branch_id and a.agent_id= c.agent_id) and (b.branch_id=1 and a.branch_id=1) and (a.agent_name='Alex' and c.policy_no=2001)";
-					sqlLabel.setText("<html>"+query+"</html>");
+					sqlLabel.setText("<html>"+"SELECT B.BRANCH_ID,A.AGENT_NAME,C.POLICY_NO,C.NAME FROM BRANCH B,AGENT A,CUSTOMER C WHERE (B.BRANCH_ID=A.BRANCH_ID AND A.AGENT_ID= C.AGENT_ID) AND (B.BRANCH_ID=1 AND A.BRANCH_ID=1) AND (A.AGENT_NAME='ALEX' AND C.POLICY_NO=2001)"+"</html>");
 				
 					try {
 						PreparedStatement pt = con.prepareStatement(query);
@@ -227,8 +227,8 @@ public class QueryFrame extends JFrame {
 				
 			}
 		});
-		btnSubmitQuery.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnSubmitQuery.setBounds(360, 347, 206, 25);
+		btnSubmitQuery.setFont(new Font("Georgia", Font.BOLD, 15));
+		btnSubmitQuery.setBounds(488, 339, 206, 50);
 		contentPane.add(btnSubmitQuery);
 		
 		
@@ -240,7 +240,7 @@ public class QueryFrame extends JFrame {
 		
 		JLabel lblOutput = new JLabel("OUTPUT");
 		lblOutput.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 21));
-		lblOutput.setBounds(548, 406, 106, 16);
+		lblOutput.setBounds(647, 402, 106, 16);
 		contentPane.add(lblOutput);
 	}
 }
