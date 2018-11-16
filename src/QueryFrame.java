@@ -73,9 +73,9 @@ public class QueryFrame extends JFrame {
 		lblQueries.setBounds(395, 0, 206, 58);
 		contentPane.add(lblQueries);
 		
-		JLabel lblNewLabel = new JLabel("Retrieve the name and his customer name and dob whose location is \"DELHI\"");
+		JLabel lblNewLabel = new JLabel("<html>Get the student name and usn who passed in the examination and scored above 500 marks</html>\r\n");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(280, 79, 728, 16);
+		lblNewLabel.setBounds(281, 70, 849, 35);
 		contentPane.add(lblNewLabel);
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Query 2");
@@ -84,7 +84,7 @@ public class QueryFrame extends JFrame {
 		rdbtnNewRadioButton_1.setBounds(105, 128, 106, 25);
 		contentPane.add(rdbtnNewRadioButton_1);
 		
-		JLabel lblNewLabel_1 = new JLabel("<html>Retrieve the policies of all customers name and id who has \"HEALTH\" policies with maturity amount > 200000</html?");
+		JLabel lblNewLabel_1 = new JLabel("<html>Retreive the student deatails who scored highest in the examnation</html?");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_1.setBounds(281, 97, 908, 84);
@@ -96,7 +96,7 @@ public class QueryFrame extends JFrame {
 		rdbtnNewRadioButton_2.setBounds(105, 183, 112, 25);
 		contentPane.add(rdbtnNewRadioButton_2);
 		
-		JLabel lblNewLabel_2 = new JLabel("<html>\r\n Retrieve the Policy name,Policy no and name of the agent and Tensure Having Policy Type as 'HOME'.</html>");
+		JLabel lblNewLabel_2 = new JLabel("<html>\r\nRetreive the student usn,name,department_id,sem and quota  who belongs to department number  5.</html>");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_2.setBounds(280, 170, 909, 50);
 		contentPane.add(lblNewLabel_2);
@@ -107,9 +107,9 @@ public class QueryFrame extends JFrame {
 		rdbtnNewRadioButton_3.setBounds(105, 234, 112, 25);
 		contentPane.add(rdbtnNewRadioButton_3);
 		
-		JLabel lblNewLabel_3 = new JLabel("<html>For a Table \"POLICY\" retrieve the name of the policy and policy_no and count the number of Customer present in each policy.</html>");
+		JLabel lblNewLabel_3 = new JLabel("<html>.Get the student name, usn,address,department _id,sem,result  who passed in the examination . </html>\r\n");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(280, 234, 966, 50);
+		lblNewLabel_3.setBounds(278, 221, 966, 50);
 		contentPane.add(lblNewLabel_3);
 		
 		JRadioButton rdbtnNewRadioButton_4 = new JRadioButton("Query 5");
@@ -118,18 +118,18 @@ public class QueryFrame extends JFrame {
 		rdbtnNewRadioButton_4.setBounds(105, 298, 112, 25);
 		contentPane.add(rdbtnNewRadioButton_4);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
+		JLabel lblNewLabel_4 = new JLabel("<html>Get Student department name and corresponding department id ,name usn and sem who are localite (Haliyal)</html>\r\n");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_4.setBounds(280, 302, 185, 16);
+		lblNewLabel_4.setBounds(281, 273, 711, 50);
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel sqlLabel = new JLabel("");
 		sqlLabel.setFont(new Font("Consolas", Font.BOLD, 20));
-		sqlLabel.setBounds(52, 436, 549, 302);
+		sqlLabel.setBounds(52, 436, 490, 302);
 		contentPane.add(sqlLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(657, 431, 589, 307);
+		scrollPane.setBounds(623, 431, 589, 307);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -142,7 +142,8 @@ public class QueryFrame extends JFrame {
 				
 				String query;
 				if(rdbtnNewRadioButton.isSelected()) {
-					query="SELECT AGENT_NAME,NAME,DOB FROM BRANCH B,AGENT A,CUSTOMER C	WHERE B.BRANCH_ID=A.BRANCH_ID AND  A.AGENT_ID=C.AGENT_ID AND B.LOCATION='Delhi'";
+					query="select e.name ,e.usn from exam e\r\n" + 
+							"where e.result='pass' and e.marks>500";
 					sqlLabel.setText("<html>"+query+"</html>");
 				
 					try {
@@ -157,7 +158,8 @@ public class QueryFrame extends JFrame {
 					}
 				}
 				else if(rdbtnNewRadioButton_1.isSelected()) {
-					query="SELECT CUSTOMER_ID,NAME FROM CUSTOMER C, POLICY P, PAYMENT PA  WHERE P.POLICY_NO=C.POLICY_NO AND C.POLICY_NO=PA.POLICY_NO AND P.POLICY_TYPE='Health' AND  PA.MAT_AMOUNT > 200000";
+					query="select name,marks,result from exam\r\n" + 
+							"where marks=(select Max(marks) from exam)";
 					sqlLabel.setText("<html>"+query+"</html>");
 				
 					try {
@@ -173,7 +175,9 @@ public class QueryFrame extends JFrame {
 					
 				}
 				else if(rdbtnNewRadioButton_2.isSelected()) {
-					query="SELECT DISTINCT P.POLICY_NO,NAME,AGENT_NAME FROM POLICY P, AGENT A, CUSTOMER C WHERE A.AGENT_ID=C.AGENT_ID AND P.POLICY_NO=C.POLICY_NO AND POLICY_TYPE='Home'";
+					query="select c.usn,s.name,c.d_id,c.sem,a.quota\r\n" + 
+							" from student s, class c,admission a\r\n" + 
+							"where  a.name=s.name and s.usn=c.usn and d_id=2";
 					sqlLabel.setText("<html>"+query+"</html>");
 				
 					try {
@@ -189,7 +193,9 @@ public class QueryFrame extends JFrame {
 					
 				}
 				else if(rdbtnNewRadioButton_3.isSelected()) {
-					query="SELECT P.POLICY_NO,POLICY_NAME,COUNT(*) AS NO_OF_CUSTOMER FROM POLICY P, AGENT A, CUSTOMER C WHERE C.POLICY_NO=P.POLICY_NO AND A.AGENT_ID=C.AGENT_ID GROUP BY P.POLICY_NO,POLICY_NAME";
+					query="select s.name ,s.usn,s.address,c.d_id,c.sem,e.result\r\n" + 
+							"from student s,exam e,class c\r\n" + 
+							"where s.usn=c.usn and s.name=e.name and e.result='pass'";
 					sqlLabel.setText("<html>"+query+"</html>");
 				
 					try {
@@ -205,7 +211,9 @@ public class QueryFrame extends JFrame {
 					
 				}
 				else if(rdbtnNewRadioButton_4.isSelected()) {
-					query="select b.branch_id,a.agent_name,c.policy_no,c.name from branch b,agent a,customer c where (b.branch_id=a.branch_id and a.agent_id= c.agent_id) and (b.branch_id=1 and a.branch_id=1) and (a.agent_name='Alex' and c.policy_no=2001)";
+					query="select d.d_name,d.d_id,s.name,c.usn,c.sem\r\n" + 
+							"from department d, student s, class c \r\n" + 
+							"where c.d_id=d.d_id and s.usn=c.usn and s.address='haliyal'";
 					sqlLabel.setText("<html>"+"SELECT B.BRANCH_ID,A.AGENT_NAME,C.POLICY_NO,C.NAME FROM BRANCH B,AGENT A,CUSTOMER C WHERE (B.BRANCH_ID=A.BRANCH_ID AND A.AGENT_ID= C.AGENT_ID) AND (B.BRANCH_ID=1 AND A.BRANCH_ID=1) AND (A.AGENT_NAME='ALEX' AND C.POLICY_NO=2001)"+"</html>");
 				
 					try {
@@ -228,19 +236,23 @@ public class QueryFrame extends JFrame {
 			}
 		});
 		btnSubmitQuery.setFont(new Font("Georgia", Font.BOLD, 15));
-		btnSubmitQuery.setBounds(488, 339, 206, 50);
+		btnSubmitQuery.setBounds(488, 335, 206, 50);
 		contentPane.add(btnSubmitQuery);
-		
-		
-		
-		JLabel lblQueryInSql = new JLabel("Query in SQL");
-		lblQueryInSql.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
-		lblQueryInSql.setBounds(47, 398, 147, 25);
-		contentPane.add(lblQueryInSql);
 		
 		JLabel lblOutput = new JLabel("OUTPUT");
 		lblOutput.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 21));
-		lblOutput.setBounds(647, 402, 106, 16);
+		lblOutput.setBounds(615, 398, 106, 20);
 		contentPane.add(lblOutput);
+		
+		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				HomeFrame hf = new HomeFrame();
+				hf.setVisible(true);
+			}
+		});
+		btnGoBack.setBounds(335, 348, 97, 25);
+		contentPane.add(btnGoBack);
 	}
 }

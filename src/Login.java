@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.sql.*;
+import java.awt.Color;
 
 public class Login {
 
@@ -52,6 +53,7 @@ public class Login {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(255, 99, 71));
 		frame.setBounds(100, 100, 676, 460);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -61,37 +63,37 @@ public class Login {
 		btnClickMe.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
-				
-				String query = "select * from users where username=? and password=?";
-				try {
-					PreparedStatement pt = con.prepareStatement(query);
-					pt.setString(1, userNameTxt.getText().toLowerCase());
-					pt.setString(2, passwordTxt.getText().toLowerCase());
-					ResultSet rs = pt.executeQuery();
-					int count = 0;
-					while(rs.next()) {
-						count++;
-					}
-					
-					if(count>0) {
-						JOptionPane.showMessageDialog(null,"Connection Succesful");
+//				
+//				String query = "select * from users where username=? and password=?";
+//				try {
+//					PreparedStatement pt = con.prepareStatement(query);
+//					pt.setString(1, userNameTxt.getText().toLowerCase());
+//					pt.setString(2, passwordTxt.getText().toLowerCase());
+//					ResultSet rs = pt.executeQuery();
+//					int count = 0;
+//					while(rs.next()) {
+//						count++;
+//					}
+//					
+//					if(count>0) {
+//						JOptionPane.showMessageDialog(null,"Connection Succesful");
 						frame.dispose();
 						HomeFrame hf= new HomeFrame();
 						hf.setVisible(true);
-						rs.close();
-						pt.close();
-					}
-					else {
-						JOptionPane.showMessageDialog(null,"Wrong Login Credentials. Please try again !");
-						userNameTxt.setText("");
-						passwordTxt.setText("");
-					}
+//						rs.close();
+//						pt.close();
 					
-				} catch (SQLException e) {
-					System.out.println("Error in config pass");
-					e.printStackTrace();
-				}
-				
+//					else {
+//						JOptionPane.showMessageDialog(null,"Wrong Login Credentials. Please try again !");
+//						userNameTxt.setText("");
+//						passwordTxt.setText("");
+//					}
+//					
+//				} catch (SQLException e) {
+//					System.out.println("Error in config pass");
+//					e.printStackTrace();
+//				}
+//				
 				
 			}
 		});

@@ -77,13 +77,13 @@ public class ViewFrame extends JFrame {
 		table.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		scrollPane.setViewportView(table);
 		
-		JButton btnCustomer = new JButton("Customer");
+		JButton btnCustomer = new JButton("Admission");
 		btnCustomer.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					PreparedStatement pt = con.prepareStatement("select * from customer");
+					PreparedStatement pt = con.prepareStatement("select * from admission");
 					ResultSet rs = pt.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					rs.close();
@@ -97,12 +97,12 @@ public class ViewFrame extends JFrame {
 		btnCustomer.setBounds(49, 136, 129, 36);
 		contentPane.add(btnCustomer);
 		
-		btnAgent = new JButton("Agent");
+		btnAgent = new JButton("Department");
 		btnAgent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					PreparedStatement pt = con.prepareStatement("select * from agent");
+					PreparedStatement pt = con.prepareStatement("select * from department");
 					ResultSet rs = pt.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					rs.close();
@@ -114,15 +114,15 @@ public class ViewFrame extends JFrame {
 			}
 		});
 		btnAgent.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnAgent.setBounds(257, 136, 129, 36);
+		btnAgent.setBounds(247, 136, 139, 36);
 		contentPane.add(btnAgent);
 		
-		btnBranch = new JButton("Branch");
+		btnBranch = new JButton("Student");
 		btnBranch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					PreparedStatement pt = con.prepareStatement("select * from branch");
+					PreparedStatement pt = con.prepareStatement("select * from student");
 					ResultSet rs = pt.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					rs.close();
@@ -137,12 +137,12 @@ public class ViewFrame extends JFrame {
 		btnBranch.setBounds(456, 136, 129, 36);
 		contentPane.add(btnBranch);
 		
-		btnPayment = new JButton("Payment");
+		btnPayment = new JButton("Class");
 		btnPayment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					PreparedStatement pt = con.prepareStatement("select * from payment");
+					PreparedStatement pt = con.prepareStatement("select * from class");
 					ResultSet rs = pt.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					rs.close();
@@ -157,12 +157,12 @@ public class ViewFrame extends JFrame {
 		btnPayment.setBounds(641, 136, 129, 36);
 		contentPane.add(btnPayment);
 		
-		btnPoliciy = new JButton("Policy");
+		btnPoliciy = new JButton("Exam");
 		btnPoliciy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					PreparedStatement pt = con.prepareStatement("select * from policy");
+					PreparedStatement pt = con.prepareStatement("select * from exam");
 					ResultSet rs = pt.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					rs.close();
@@ -176,5 +176,17 @@ public class ViewFrame extends JFrame {
 		btnPoliciy.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnPoliciy.setBounds(821, 136, 129, 36);
 		contentPane.add(btnPoliciy);
+		
+		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				HomeFrame hf = new HomeFrame();
+				hf.setVisible(true);
+			}
+		});
+		btnGoBack.setBounds(391, 248, 97, 36);
+		contentPane.add(btnGoBack);
 	}
 }
