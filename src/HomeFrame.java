@@ -10,7 +10,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
-import java.awt.Color;
+import javax.swing.ImageIcon;
+import java.awt.SystemColor;
 
 public class HomeFrame extends JFrame {
 
@@ -37,19 +38,23 @@ public class HomeFrame extends JFrame {
 	 */
 	public HomeFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 1024, 786);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(144, 238, 144));
+		contentPane.setBackground(SystemColor.menu);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblChooseOperationTo = new JLabel("Choose Operation to Perform");
+		JLabel lblChooseOperationTo = new JLabel("");
+		lblChooseOperationTo.setIcon(new ImageIcon("C:\\Users\\hp\\Desktop\\Java Images\\textHome.png"));
 		lblChooseOperationTo.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblChooseOperationTo.setBounds(224, 13, 365, 49);
+		lblChooseOperationTo.setBounds(237, 36, 507, 49);
 		contentPane.add(lblChooseOperationTo);
 		
-		JButton btnViewExistingTables = new JButton("VIEW EXISTING TABLES");
+		JButton btnViewExistingTables = new JButton("");
+		btnViewExistingTables.setBorder(new EmptyBorder(0, 0, 0, 0));
+		btnViewExistingTables.setBackground(SystemColor.menu);
+		btnViewExistingTables.setIcon(new ImageIcon("C:\\Users\\hp\\Desktop\\Java Images\\btn1.png"));
 		btnViewExistingTables.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -66,10 +71,13 @@ public class HomeFrame extends JFrame {
 			}
 		});
 		btnViewExistingTables.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnViewExistingTables.setBounds(211, 121, 338, 41);
+		btnViewExistingTables.setBounds(304, 243, 338, 41);
 		contentPane.add(btnViewExistingTables);
 		
-		JButton btnInsertValues = new JButton("Insert Values");
+		JButton btnInsertValues = new JButton("");
+		btnInsertValues.setBorder(new EmptyBorder(0, 0, 0, 0));
+		btnInsertValues.setBackground(SystemColor.menu);
+		btnInsertValues.setIcon(new ImageIcon("C:\\Users\\hp\\Desktop\\Java Images\\btn2.png"));
 		btnInsertValues.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -84,10 +92,13 @@ public class HomeFrame extends JFrame {
 			}
 		});
 		btnInsertValues.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnInsertValues.setBounds(211, 217, 338, 41);
+		btnInsertValues.setBounds(304, 348, 338, 41);
 		contentPane.add(btnInsertValues);
 		
-		JButton btnQueries = new JButton("Queries");
+		JButton btnQueries = new JButton("");
+		btnQueries.setBorder(new EmptyBorder(0, 0, 0, 0));
+		btnQueries.setBackground(SystemColor.menu);
+		btnQueries.setIcon(new ImageIcon("C:\\Users\\hp\\Desktop\\Java Images\\executeQueries.png"));
 		btnQueries.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -103,7 +114,26 @@ public class HomeFrame extends JFrame {
 			}
 		});
 		btnQueries.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnQueries.setBounds(211, 301, 338, 41);
+		btnQueries.setBounds(304, 450, 338, 41);
 		contentPane.add(btnQueries);
+		
+		JButton btnStoredProcedure = new JButton("");
+		btnStoredProcedure.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				contentPane.setVisible(false);
+				try {
+					SP iFrame = new SP();
+					iFrame.setVisible(true);
+				} catch (Exception e4) {
+					// TODO Auto-generated catch block
+					e4.printStackTrace();
+				}
+			}
+		});
+		btnStoredProcedure.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnStoredProcedure.setBorder(new EmptyBorder(0, 0, 0, 0));
+		btnStoredProcedure.setBackground(SystemColor.menu);
+		btnStoredProcedure.setBounds(304, 541, 338, 41);
+		contentPane.add(btnStoredProcedure);
 	}
 }

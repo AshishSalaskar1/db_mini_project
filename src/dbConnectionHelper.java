@@ -9,7 +9,7 @@ public class dbConnectionHelper {
 		 ClassNotFoundException {
 		Class.forName("oracle.jdbc.driver.OracleDriver");  
 		try {
-			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","shashi","shashi");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","ashish","ashish98");
 			return con;
 			
 		} catch (SQLException e) {

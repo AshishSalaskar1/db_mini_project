@@ -15,6 +15,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
+import javax.swing.UIManager;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class ViewFrame extends JFrame {
@@ -58,33 +61,38 @@ public class ViewFrame extends JFrame {
 			
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1024, 768);
+		setBounds(100, 100, 1024, 786);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(102, 102, 204));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblViewTableData = new JLabel("View Existing Data");
-		lblViewTableData.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		lblViewTableData.setBounds(346, 13, 183, 36);
+		lblViewTableData.setForeground(new Color(255, 255, 255));
+		lblViewTableData.setFont(new Font("Trebuchet MS", Font.BOLD, 27));
+		lblViewTableData.setBounds(346, 13, 239, 52);
 		contentPane.add(lblViewTableData);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(61, 320, 883, 337);
+		scrollPane.setBounds(49, 338, 883, 250);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		table.setFont(new Font("Times New Roman", Font.PLAIN, 24));
 		scrollPane.setViewportView(table);
 		
-		JButton btnCustomer = new JButton("Admission");
+		JButton btnCustomer = new JButton("  Customer");
+		btnCustomer.setBackground(new Color(240,240,240));
+		btnCustomer.setIcon(new ImageIcon("C:\\Users\\hp\\Desktop\\Java Images\\specialist-user.png"));
 		btnCustomer.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					PreparedStatement pt = con.prepareStatement("select * from admission");
+					PreparedStatement pt = con.prepareStatement("select * from customer");
 					ResultSet rs = pt.executeQuery();
+					//To add query results into table
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					rs.close();
 					pt.close();
@@ -94,16 +102,19 @@ public class ViewFrame extends JFrame {
 				}
 			}
 		});
-		btnCustomer.setBounds(49, 136, 129, 36);
+		btnCustomer.setBounds(49, 136, 161, 52);
 		contentPane.add(btnCustomer);
 		
-		btnAgent = new JButton("Department");
+		btnAgent = new JButton("  Agent");
+		btnAgent.setIcon(new ImageIcon("C:\\Users\\hp\\Desktop\\Java Images\\help-operator(1).png"));
 		btnAgent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					PreparedStatement pt = con.prepareStatement("select * from department");
+					PreparedStatement pt = con.prepareStatement("select * from agent");
 					ResultSet rs = pt.executeQuery();
+					
+					
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					rs.close();
 					pt.close();
@@ -114,15 +125,16 @@ public class ViewFrame extends JFrame {
 			}
 		});
 		btnAgent.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnAgent.setBounds(247, 136, 139, 36);
+		btnAgent.setBounds(257, 136, 150, 52);
 		contentPane.add(btnAgent);
 		
-		btnBranch = new JButton("Student");
+		btnBranch = new JButton("   Branch");
+		btnBranch.setIcon(new ImageIcon("C:\\Users\\hp\\Desktop\\Java Images\\home.png"));
 		btnBranch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					PreparedStatement pt = con.prepareStatement("select * from student");
+					PreparedStatement pt = con.prepareStatement("select * from branch");
 					ResultSet rs = pt.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					rs.close();
@@ -134,15 +146,16 @@ public class ViewFrame extends JFrame {
 			}
 		});
 		btnBranch.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnBranch.setBounds(456, 136, 129, 36);
+		btnBranch.setBounds(445, 140, 151, 44);
 		contentPane.add(btnBranch);
 		
-		btnPayment = new JButton("Class");
+		btnPayment = new JButton("  Payment");
+		btnPayment.setIcon(new ImageIcon("C:\\Users\\hp\\Desktop\\Java Images\\icon.png"));
 		btnPayment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					PreparedStatement pt = con.prepareStatement("select * from class");
+					PreparedStatement pt = con.prepareStatement("select * from payment");
 					ResultSet rs = pt.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					rs.close();
@@ -154,15 +167,16 @@ public class ViewFrame extends JFrame {
 			}
 		});
 		btnPayment.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnPayment.setBounds(641, 136, 129, 36);
+		btnPayment.setBounds(622, 140, 161, 44);
 		contentPane.add(btnPayment);
 		
-		btnPoliciy = new JButton("Exam");
+		btnPoliciy = new JButton("Policy");
+		btnPoliciy.setIcon(new ImageIcon("C:\\Users\\hp\\Desktop\\Java Images\\contract.png"));
 		btnPoliciy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					PreparedStatement pt = con.prepareStatement("select * from exam");
+					PreparedStatement pt = con.prepareStatement("select * from policy");
 					ResultSet rs = pt.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					rs.close();
@@ -174,19 +188,19 @@ public class ViewFrame extends JFrame {
 			}
 		});
 		btnPoliciy.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnPoliciy.setBounds(821, 136, 129, 36);
+		btnPoliciy.setBounds(807, 140, 144, 44);
 		contentPane.add(btnPoliciy);
 		
-		JButton btnGoBack = new JButton("Go Back");
-		btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnGoBack.addActionListener(new ActionListener() {
+		JButton btnBack = new JButton("Back");
+		btnBack.setIcon(new ImageIcon("C:\\Users\\hp\\Desktop\\Java Images\\backButton.png"));
+		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				HomeFrame hf = new HomeFrame();
-				hf.setVisible(true);
+				HomeFrame home = new HomeFrame();
+				home.setVisible(true);
 			}
 		});
-		btnGoBack.setBounds(391, 248, 97, 36);
-		contentPane.add(btnGoBack);
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnBack.setBounds(424, 653, 161, 73);
+		contentPane.add(btnBack);
 	}
 }
