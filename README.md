@@ -1,5 +1,4 @@
 # DBMS Mini Project - Insurance Policy Management System
-This mini project was developed as a part of DBMS lab curriculum.
 The aim of this project was to understand the basics of SQL as well as to try to communicate with the backend using any suitable frontend tool. Here we opted for using Java Swing
 
 ## Features Implemented:
